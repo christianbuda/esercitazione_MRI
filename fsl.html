@@ -1,83 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Installazione FSL</title>
     <style>
+        /* VARIABILI PER IL TEMA CHIARO (Default) */
+        :root {
+            --bg-color: #f6f8fa;
+            --container-bg: #ffffff;
+            --text-color: #24292e;
+            --link-color: #0366d6;
+            --link-hover: #005cc5;
+            --code-inline-bg: #e1e4e8;
+            --code-block-bg: #1b1f23;
+            --code-text: #f8f8f2;
+            --notice-bg: #fffbdd;
+            --notice-border: #e3cc00;
+            --error-bg: #ffe6e6;
+            --error-border: #d73a49;
+            --win-bg: #f1f8ff;
+            --mac-bg: #f0fdf4;
+            --border-color: #e1e4e8;
+        }
+
+        /* VARIABILI PER IL TEMA SCURO (Attivato in automatico dal sistema) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0d1117;
+                --container-bg: #161b22;
+                --text-color: #c9d1d9;
+                --link-color: #58a6ff;
+                --link-hover: #79c0ff;
+                --code-inline-bg: #30363d;
+                --code-block-bg: #010409;
+                --code-text: #e6edf3;
+                --notice-bg: #332b00;
+                --notice-border: #d29922;
+                --error-bg: #3b0d0c;      /* Rosso scuro per evitare di accecare */
+                --error-border: #f85149;
+                --win-bg: #0d1a2b;        /* Azzurro scuro */
+                --mac-bg: #0b1f13;        /* Verde scuro */
+                --border-color: #30363d;
+            }
+        }
+
+        /* APPLICAZIONE DEGLI STILI */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background-color: #f6f8fa;
-            color: #24292e;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
             line-height: 1.6;
         }
+
         .container {
-            background: white;
+            background: var(--container-bg);
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
+        
+        a { color: var(--link-color); font-weight: 600; text-decoration: none; }
+        a:hover { text-decoration: underline; color: var(--link-hover); }
+
+        code {
+            background-color: var(--code-inline-bg);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: var(--code-block-bg);
+            color: var(--code-text);
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .notice {
+            background-color: var(--notice-bg);
+            border-left: 4px solid var(--notice-border);
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 6px;
+            margin: 15px 0;
+            border: 1px solid var(--border-color);
+        }
+        
         .back-link {
             display: inline-block;
             margin-bottom: 20px;
-            color: #0366d6;
-            text-decoration: none;
+            color: var(--link-color);
             font-weight: 600;
         }
-        .back-link:hover { text-decoration: underline; }
         
         .forward-link {
             display: inline-block;
             margin-top: 20px;
             padding: 12px 24px;
             background-color: #2ea44f;
-            color: white;
+            color: white !important; /* Mantiene il testo bianco sul verde */
             text-decoration: none;
             border-radius: 6px;
             font-weight: 600;
             transition: background-color 0.2s;
         }
-        .forward-link:hover { background-color: #2c974b; }
+        .forward-link:hover { background-color: #2c974b; text-decoration: none; }
 
-        code {
-            background-color: #e1e4e8;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-family: monospace;
-        }
-        .code-block {
-            background-color: #1b1f23;
-            color: #f8f8f2;
-            padding: 16px;
-            border-radius: 6px;
-            margin: 16px 0;
-            overflow-x: auto; /* Per i comandi lunghi */
-        }
-        .notice {
-            background-color: #fffbdd;
-            border-left: 4px solid #e3cc00;
-            padding: 16px;
-            margin: 20px 0;
-        }
         .error-notice {
-            background-color: #ffe6e6;
-            border-left: 4px solid #d73a49;
+            background-color: var(--error-bg);
+            border-left: 4px solid var(--error-border);
             padding: 16px;
             margin: 20px 0;
         }
         
-        /* Stili per i box specifici per OS */
         .os-box {
             padding: 15px;
             border-radius: 6px;
             margin-bottom: 20px;
-            border: 1px solid #e1e4e8;
+            border: 1px solid var(--border-color);
         }
-        .os-box-win { background-color: #f1f8ff; border-left: 4px solid #0366d6; }
-        .os-box-mac { background-color: #f0fdf4; border-left: 4px solid #2ea44f; }
+        .os-box-win { background-color: var(--win-bg); border-left: 4px solid var(--link-color); }
+        .os-box-mac { background-color: var(--mac-bg); border-left: 4px solid #2ea44f; }
         .os-box h4 { margin-top: 0; }
     </style>
 </head>
@@ -106,7 +162,8 @@
         <li>
             <strong>Esegui il comando di installazione:</strong>
             <p>Copia l'intero comando qui sotto, incollalo nel tuo terminale e premi <strong>Invio</strong>:</p>
-            <div class="code-block"><code>cd ~ && curl -Ls https://fsl.fmrib.ox.ac.uk/fsldownloads/fslconda/releases/getfsl.sh | sh -s</code></div>
+            <pre><code>cd ~
+curl -Ls https://fsl.fmrib.ox.ac.uk/fsldownloads/fslconda/releases/getfsl.sh | sh -s</code></pre>
         </li>
         <li>
             <strong>Attendi il completamento:</strong>
@@ -115,8 +172,8 @@
         <li>
             <strong>Verifica il successo:</strong>
             <p>Leggi attentamente l'output finale. Se tutto è andato a buon fine, vedrai questo messaggio:</p>
-            <div class="code-block"><code>FSL successfully installed</code></div>
-            <img src="images/fslinstalled.png" alt="FSL installato" style="max-width: 100%; border-radius: 6px; margin: 15px 0; border: 1px solid #e1e4e8;">
+            <pre><code>FSL successfully installed</code></pre>
+            <img src="images/fslinstalled.png" alt="FSL installato">
             <div class="notice">
                 <strong>Importante:</strong> Una volta vista questa scritta, <strong>chiudi completamente e apri una nuova finestra del terminale</strong> per applicare le modifiche.
             </div>

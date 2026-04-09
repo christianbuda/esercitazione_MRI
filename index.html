@@ -1,21 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esercitazione Neuroscienze Industriali</title>
     <style>
+        /* VARIABILI PER IL TEMA CHIARO (Default) */
+        :root {
+            --bg-color: #f6f8fa;
+            --container-bg: #ffffff;
+            --text-color: #24292e;
+            --link-color: #0366d6;
+            --link-hover: #005cc5;
+        }
+
+        /* VARIABILI PER IL TEMA SCURO (Attivato in automatico dal sistema) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0d1117;
+                --container-bg: #161b22;
+                --text-color: #c9d1d9;
+                --link-color: #58a6ff;
+                --link-hover: #79c0ff;
+            }
+        }
+
+        /* APPLICAZIONE DEGLI STILI */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background-color: #f6f8fa;
-            color: #24292e;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
+            line-height: 1.6;
         }
         .container {
-            background: white;
+            background: var(--container-bg);
             padding: 50px;
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -27,11 +49,13 @@
             margin-top: 30px;
             flex-wrap: wrap; /* Utile se il testo del terzo bottone è lungo, per adattarlo a schermi più piccoli */
         }
+        
+        /* STILE BOTTONI (Mantengono il testo bianco forzato per contrastare coi loro colori) */
         .btn {
             display: inline-block;
             padding: 15px 30px;
             background-color: #0366d6;
-            color: white;
+            color: #ffffff !important;
             text-decoration: none;
             border-radius: 6px;
             font-weight: 600;
@@ -49,12 +73,13 @@
 
         /* Stile pulito per i link testuali all'interno dei paragrafi */
         p a {
-            color: #0366d6;
+            color: var(--link-color);
             text-decoration: none;
             font-weight: 600;
         }
         p a:hover {
             text-decoration: underline;
+            color: var(--link-hover);
         }
     </style>
 </head>
@@ -62,8 +87,8 @@
 
 <div class="container">
     <h1>Esercitazione 4: MRI</h1>
-    <p>Per la quarta esercitazione, dovrai installare un ambiente di python, e un toolbox molto popolare per analizzare vari tipi di dato dalla risonanza magnetica: <a href="https://fsl.fmrib.ox.ac.uk/fsl/docs/">FSL</a>!</p>
-    <h2>Quale è il tuo sistema operativo?</h2>
+    <p>Per la quarta esercitazione, dovrai installare un ambiente Python e un toolbox molto popolare per analizzare vari tipi di dati dalla risonanza magnetica: <a href="https://fsl.fmrib.ox.ac.uk/fsl/docs/">FSL</a>!</p>
+    <h2>Qual è il tuo sistema operativo?</h2>
     
     <div class="os-selection">
         <a href="wsl.html" class="btn">Windows</a>

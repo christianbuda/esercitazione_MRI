@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambiente Python: VS Code e Miniconda</title>
+    <style>
+        /* VARIABILI PER IL TEMA CHIARO (Default) */
+        :root {
+            --bg-color: #f6f8fa;
+            --container-bg: #ffffff;
+            --text-color: #24292e;
+            --link-color: #0366d6;
+            --link-hover: #005cc5;
+            --code-inline-bg: #e1e4e8;
+            --code-block-bg: #1b1f23;
+            --code-text: #f8f8f2;
+            --notice-bg: #fffbdd;
+            --notice-border: #e3cc00;
+            --error-bg: #ffe6e6;
+            --error-border: #d73a49;
+            --win-bg: #f1f8ff;
+            --mac-bg: #f0fdf4;
+            --border-color: #e1e4e8;
+        }
+
+        /* VARIABILI PER IL TEMA SCURO */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0d1117;
+                --container-bg: #161b22;
+                --text-color: #c9d1d9;
+                --link-color: #58a6ff;
+                --link-hover: #79c0ff;
+                --code-inline-bg: #30363d;
+                --code-block-bg: #010409;
+                --code-text: #e6edf3;
+                --notice-bg: #332b00;
+                --notice-border: #d29922;
+                --error-bg: #3b0d0c;
+                --error-border: #f85149;
+                --win-bg: #0d1a2b;
+                --mac-bg: #0b1f13;
+                --border-color: #30363d;
+            }
+        }
+
+        /* APPLICAZIONE DEGLI STILI */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            background: var(--container-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        a { color: var(--link-color); font-weight: 600; text-decoration: none; }
+        a:hover { text-decoration: underline; color: var(--link-hover); }
+
+        code {
+            background-color: var(--code-inline-bg);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: var(--code-block-bg);
+            color: var(--code-text);
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .notice {
+            background-color: var(--notice-bg);
+            border-left: 4px solid var(--notice-border);
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .alert {
+            background-color: var(--error-bg);
+            border-left: 4px solid var(--error-border);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .alert h3 { margin-top: 0; color: var(--error-border); }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--link-color);
+            font-weight: 600;
+        }
+
+        .os-box {
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+        }
+        .os-box-win { background-color: var(--win-bg); border-left: 4px solid var(--link-color); }
+        .os-box-mac { background-color: var(--mac-bg); border-left: 4px solid #2ea44f; }
+        .os-box h3 { margin-top: 0; }
+        
+        .done-text {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <a href="fsl.html" class="back-link">← Torna all'installazione di FSL</a>
+    
+    <h2>🐍 Fase Finale: VS Code e Python</h2>
+    <p>Per l'esercitazione scriveremo ed eseguiremo del codice Python per estrarre le serie temporali dalle risonanze e costruire matrici di connettività. Per farlo in modo comodo useremo <strong>Visual Studio Code</strong> (l'editor) e <strong>Miniconda</strong> (il motore Python).</p>
+
+    <div class="alert">
+        <h3>🚨 AVVISO FONDAMENTALE: FAI QUESTO A CASA!</h3>
+        <p>In aula <strong>non avremo accesso a internet</strong> per scaricare pacchetti. Devi completare <strong>TUTTI</strong> i passaggi di questa pagina a casa, inclusa l'installazione finale dei pacchetti con <code>pip</code>. Se non lo fai, il tuo computer non potrà eseguire il codice in classe!</p>
+    </div>
+
+    <h3>1. Installa Visual Studio Code</h3>
+    
+    <div class="os-box os-box-win">
+        <h3>🖥️ Utenti Windows</h3>
+        <ol>
+            <li>Vai sul sito <a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a>, scarica l'installer per Windows e installalo normalmente.</li>
+            <li>Apri VS Code. Sulla barra a sinistra, clicca sull'icona delle <strong>Estensioni</strong> (quella con i 4 quadratini).</li>
+            <li>Cerca l'estensione <strong>"WSL"</strong> (di Microsoft) e clicca su <strong>Install</strong>. Questo è <em>essenziale</em> per permettere a VS Code di comunicare con il tuo Ubuntu!</li>
+            <li>Cerca anche le estensioni <strong>"Python"</strong> e <strong>"Jupyter"</strong> e installale.</li>
+        </ol>
+    </div>
+
+    <div class="os-box os-box-mac">
+        <h3>🍎 Utenti macOS</h3>
+        <ol>
+            <li>Vai sul sito <a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a> e scarica la versione per Mac.</li>
+            <li>Trascina l'app estratta nella cartella <strong>Applicazioni</strong>.</li>
+            <li>Apri VS Code. Sulla barra a sinistra, clicca sull'icona delle <strong>Estensioni</strong> (quella con i 4 quadratini).</li>
+            <li>Cerca le estensioni <strong>"Python"</strong> e <strong>"Jupyter"</strong> e clicca su <strong>Install</strong>.</li>
+        </ol>
+    </div>
+
+    <h3>2. Installa Miniconda</h3>
+    <p>Ora installiamo Python. <strong>Attenzione:</strong> chi usa Windows dovrà installare la versione Linux <em>dentro</em> Ubuntu!</p>
+
+    <div class="os-box os-box-win">
+        <h3>🖥️ Utenti Windows (da Terminale Ubuntu)</h3>
+        <p>Apri il tuo terminale <strong>Ubuntu</strong>. Copia, incolla questo comando e premi Invio (scaricherà l'installer e lo avvierà):</p>
+        <pre><code>wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && bash Miniconda3-latest-Linux-x86_64.sh</code></pre>
+        <p>Premi <strong>Invio</strong> per scorrere la licenza, scrivi <code>yes</code> per accettarla e premi Invio. Quando ti chiede se vuoi inizializzare Miniconda, scrivi <strong><code>yes</code></strong> e premi Invio.</p>
+    </div>
+
+    <div class="os-box os-box-mac">
+        <h3>🍎 Utenti macOS</h3>
+        <p>Vai sulla <a href="https://docs.conda.io/en/latest/miniconda.html#macos-installers" target="_blank">pagina ufficiale di Miniconda</a> e scarica il <strong>Miniconda3 macOS 64-bit pkg</strong> (scegli Apple M1/ARM se hai un Mac recente, altrimenti Intel).</p>
+        <p>Fai doppio clic sul file scaricato e segui le normali istruzioni a schermo (Continua, Accetta, Installa).</p>
+    </div>
+
+    <div class="notice">
+        <strong>Importante:</strong> Dopo aver installato Miniconda, devi <strong>chiudere e riaprire il terminale</strong> (sia su Mac che su Ubuntu). Quando lo riapri, dovresti vedere la scritta <code>(base)</code> prima del tuo nome utente. Significa che Python è attivo!
+    </div>
+
+    <h3>3. Scarica le Librerie per l'Esercitazione (Serve Internet!)</h3>
+    <p>Ora che tutto è pronto, creiamo un "contenitore" isolato (environment) per la nostra esercitazione e scarichiamo tutti i pacchetti di neuroscienze che ci serviranno. Questo comando è <strong>identico per Windows e Mac</strong>.</p>
+
+    <ol>
+        <li>
+            Apri un nuovo terminale (su Windows apri <strong>Ubuntu</strong>, su Mac apri il <strong>Terminale</strong>).
+        </li>
+        <li>
+            Crea un nuovo ambiente chiamato <code>neuro</code> digitando:
+            <pre><code>conda create -n neuro python=3.10 -y</code></pre>
+        </li>
+        <li>
+            Attiva il nuovo ambiente:
+            <pre><code>conda activate neuro</code></pre>
+            <em>(Noterai che la scritta nel terminale è passata da (base) a (neuro))</em>
+        </li>
+        <li>
+            Installa tutti i pacchetti necessari tramite pip. Questo richiederà un paio di minuti in base alla connessione:
+            <pre><code>pip install jupyter nilearn nibabel matplotlib numpy scipy pandas</code></pre>
+        </li>
+    </ol>
+
+    <h3>4. Come apriremo l'esercitazione in aula</h3>
+    <p>Una volta in classe, non dovrai fare altro che usare questo trucco magico per collegare VS Code al tuo ambiente:</p>
+    <ol>
+        <li>Apri il terminale (Ubuntu per Windows, Terminale per Mac).</li>
+        <li>Naviga nella cartella dove hai salvato i file dell'esercitazione (es. <code>cd Documents/neuro_lab</code>).</li>
+        <li>Digita questo comando e premi Invio:
+            <pre><code>code .</code></pre>
+        </li>
+    </ol>
+    <p>Questo aprirà VS Code direttamente nella cartella giusta, pronto per leggere i nostri dati di risonanza magnetica!</p>
+
+    <div class="done-text">
+        🎉 <strong>TUTTO PRONTO!</strong> 🎉<br>
+        Se sei arrivato fin qui e i pacchetti `pip` si sono installati senza errori, hai superato l'installazione più difficile. Ci vediamo in aula!
+    </div>
+
+</div>
+</body>
+</html>
