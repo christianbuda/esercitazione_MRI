@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Installazione Python e VS Code (Windows)</title>
+    <title>Esecuzione in Aula (Windows)</title>
     <style>
         /* VARIABILI PER IL TEMA CHIARO (Default) */
         :root {
@@ -140,45 +140,37 @@
     </head>
 <body>
 <div class="container">
-    <a href="fsl-win.html" class="back-link">← Torna all'installazione di FSL</a>
+    <a href="conda-win.html" class="back-link">← Indietro</a>
     
-    <h2>🐍 Fase Finale: VS Code e Python (Windows)</h2>
-    <p>Per l'esercitazione useremo <strong>Visual Studio Code</strong> per leggere il codice e <strong>Miniconda</strong> per farlo funzionare.</p>
+    <h2>🚀 Lavorare in aula (Windows)</h2>
+    <p>Infine, ecco i passi da seguire per avere i dati della risonanza e il notebook pronti per l'uso.</p>
 
-    <h3>1. Installa Visual Studio Code</h3>
     <ol>
-        <li>Vai sul sito <a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a>, scarica l'installer per Windows e installalo normalmente.</li>
-        <li>Apri VS Code. Sulla barra a sinistra, clicca sull'icona delle <strong>Estensioni</strong> (quella con i 4 quadratini).</li>
-        <li>Cerca l'estensione <strong>"WSL"</strong> (di Microsoft) e clicca su <strong>Install</strong>. Questo è <em>fondamentale</em> per permettere a VS Code di comunicare con Ubuntu!</li>
-        <img src="images/vscodeWSL.png" alt="Installazione Estensione WSL">
-        <li>Cerca anche le estensioni <strong>"Python"</strong> e <strong>"Jupyter"</strong> e installale.</li>
-        <img src="images/vscodeWSL2.png" alt="Installazione Estensioni Python e Jupyter">
+        <li>
+            <strong>Scarica i dati:</strong><br>
+            Scarica il file ZIP dell'esercitazione (LINK), salvalo dove preferisci (es. in Documenti) ed estrai la cartella.
+        </li>
+        <li>
+            <strong>Apri il terminale direttamente lì:</strong><br>
+            Apri la cartella estratta usando il normale Esplora File di Windows. Tenendo premuto il tasto Shift, clicca con il tasto destro in un punto vuoto e seleziona <strong>"Apri Shell Linux qui"</strong>.
+            <img src="images/openshell.png" alt="Open in shell">
+        </li>
+        <li>
+            <strong>Avvia VS Code:</strong><br>
+            Ora digita il comando qui sotto e premi Invio:
+            <pre><code>code .</code></pre>
+        </li>
+        <li>
+            <strong>Apri il notebook:</strong><br>
+            VS Code si aprirà automaticamente con tutti i tuoi file. Apri il file `.ipynb`, assicurati di selezionare l'ambiente `neuro` in alto a destra e sei pronto a lavorare!
+            <br>IMMAGININA VS CODE NELLA CARTELLA CON EVIDENZIATO IL NOTEBOOK DA APRIRE, E IL KERNEL IN ALTO A DESTRA
+        </li>
     </ol>
 
-    <h3>2. Installa Miniconda (dentro Ubuntu)</h3>
-    <p>Apri il tuo terminale <strong>Ubuntu</strong>. Copia, incolla questo comando e premi Invio:</p>
-    <pre><code>cd ~ && wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && bash ./Miniconda3-latest-Linux-x86_64.sh</code></pre>
-    <p>Premi <strong>Invio</strong> per scorrere la licenza, una volta in fondo scrivi <code>yes</code> per accettarla e premi Invio.</p>
-    <p>Premi invio per installare Miniconda nella directory di default. Quando ti chiede se vuoi inizializzare Miniconda, scrivi <strong><code>yes</code></strong> e premi invio.</p>
-    
-    <div class="notice">
-        <strong>Importante:</strong> Dopo aver installato Miniconda, <strong>chiudi e riapri il terminale Ubuntu</strong>. Quando lo riapri, dovresti vedere la scritta <code>(base)</code> all'inizio della riga. Significa che Python è attivo!
-        <img src="images/base.png" alt="Terminale con l'ambiente (base) attivo">
+    <div style="text-align: center; font-size: 1.2em; margin-top: 40px; padding: 20px; border-top: 2px solid var(--border-color);">
+        🎉 <strong>TUTTO PRONTO!</strong> 🎉<br>
+        Ci vediamo in laboratorio!
     </div>
-
-    <h3>3. Scarica le Librerie per l'Esercitazione</h3>
-    <p>Nel terminale Ubuntu appena riaperto esegui questi comandi per accettare i termini di servizio e scaricare i pacchetti python:</p>
-    <pre><code>conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
-conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r</code></pre>
-    <p>Poi, crea l'ambiente per la nostra esercitazione eseguendo questi comandi, uno alla volta:</p>
-    <ol>
-        <li>Crea l'ambiente: <pre><code>conda create -n neuro python=3.10 -y</code></pre></li>
-        <li>Attivalo: <pre><code>conda activate neuro</code></pre> (la scritta <code>(base)</code> all'inizio della riga dovrebbe essere cambiata in <code>(neuro)</code>)</li>
-        <li>Installa i pacchetti (ci vorrà qualche minuto): <pre><code>pip install jupyter nilearn nibabel matplotlib numpy scipy pandas</code></pre></li>
-        <img src="images/condaneuro.png" alt="Ambiente neuro attivato con i pacchetti installati">
-    </ol>
-
-    <a href="run-win.html" class="forward-link">Come eseguiremo l'esercitazione in aula →</a>
 </div>
 </body>
 </html>
