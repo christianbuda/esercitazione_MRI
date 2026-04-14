@@ -172,13 +172,13 @@
 conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r</code></pre>
     <p>Poi, crea l'ambiente per la nostra esercitazione eseguendo questi comandi, uno alla volta:</p>
     <ol>
-        <li>Crea l'ambiente: <pre><code>conda create -n neuro python=3.10 -y</code></pre></li>
+        <li>Crea l'ambiente: <pre><code>conda create -n neuro -c conda-forge python=3.13 mne nibabel nilearn pyvista pyvistaqt qtpy pyqt ipywidgets ipyvtklink -y</code></pre></li>
         <li>Attivalo: <pre><code>conda activate neuro</code></pre> (la scritta <code>(base)</code> all'inizio della riga dovrebbe essere cambiata in <code>(neuro)</code>)</li>
-        <li>Installa i pacchetti (ci vorrà qualche minuto): <pre><code>pip install jupyter nilearn nibabel matplotlib numpy scipy pandas</code></pre></li>
+        <li>Installa i pacchetti (ci vorrà qualche minuto): <pre><code>pip install nest_asyncio2 jupyterlab-widgets</code></pre></li>
         <img src="images/condaneuro.png" alt="Ambiente neuro attivato con i pacchetti installati">
     </ol>
 
-    <a href="notready.html" class="forward-link">Come eseguiremo l'esercitazione in aula →</a>
+    <a href="run-macos.html" class="forward-link">Come eseguiremo l'esercitazione in aula →</a>
 </div>
 </body>
 </html>
