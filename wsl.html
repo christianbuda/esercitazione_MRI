@@ -155,6 +155,22 @@
             </div>
         </li>
         <li>
+            <strong>Tuniamo qualche impostazione:</strong>
+            <p>Alcuni PC non particolarmente performanti potrebbero avere problemi ad eseguire i prossimi step. Per questa ragione, aumenteremo un po' la memoria che Ubuntu può usare mentre è in esecuzione.</p>
+            <p>Premi i tasti `Windows+R`, incolla la scritta `%USERPROFILE%` e premi invio.</p>
+            <img src="images/winexec.png" alt="Execute">
+            <p>Dovrebbe aprirsi una cartella, lì dentro, crea un nuovo file di testo e chiamalo `.wslconfig`.<br>Dentro, incolla questo blocco di testo:</p>
+            <pre><code>[wsl2]
+memory=7GB 
+swap=16GB</code></pre>
+            <p>Ecco una finestra di esempio:</p>
+            <img src="images/wslmemory.png" alt="Set WSL config">
+            <p>Una volta salvato il file, apri una nuova powershell (Menu Start>Cerca "PowerShell"), e incolla questo comando e premi invio:</p>
+            <img src="images/unix.png" alt="Creazione account UNIX">
+            <pre><code>Rename-Item -Path "$env:USERPROFILE\.wslconfig.txt" -NewName ".wslconfig"</code></pre>
+            <p>Chiudi il file di testo e la powershell appena aperti, e procedi sotto.</p>
+        </li>
+        <li>
             <strong>Apriamo un terminale Linux!</strong>
             <p>L'installazione è completa! Per aprire un nuovo terminale Linux, fai clic sul menu Start e digita <code>Ubuntu</code>.</p>
             <img src="images/ubuntu.png" alt="Come aprire un terminale di Ubuntu">
