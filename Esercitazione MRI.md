@@ -26,9 +26,10 @@
 # Feedback esercitazione 4
 - Non insultare!!! Altrimenti poi nessuno fa domande!
 - Casino nelle cartelle: ripetere più lentamente, idealmente risolvere cambiando la struttura delle cartelle.
-- Parte di python, troppo lunga e dettagliata, impossibile imparare così. Forse meglio un notebook solo che confronta certe funzioni di python è MATLAB.
+- Parte di python, troppo lunga e dettagliata, impossibile imparare così. Forse meglio un notebook solo che confronta certe funzioni di python è MATLAB. Emiliano dice che forse posso spiegare man mano che scorro i notebook
 - Parte di risonanza troppo dettagliata, troppo per chi non sa cos'è, inutile per chi lo sa già. Forse mi fermerei a spiegare più a grandi linee cosa sono i contrasti e basta. Oggettivamente il resto è inutile.
 - Forse inserire qualche sezione di domande per favorire l'interazione?
+- Gli studenti preferirebbero di più fare qualcosa loro, magari aggiungere qualcosa nella esercitazione 4? Tanto 1 ora di python va tagliata.
 ## Problemi tecnici
 - aprire vscode wsl è un casino
 - fsl si blocca se nel path c'è uno spazio
